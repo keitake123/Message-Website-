@@ -1,9 +1,8 @@
-import "./chat.css"
-
+import "./chat.css";
 
 const Chat = () => {
     return (
-        <div className= 'chat'>Chat</div>
+        <div className ='chat'>Chat</div>
     )
 }
 
