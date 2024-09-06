@@ -1,9 +1,9 @@
 import "./list.css";
 
-const List1 = () => {
+const List = () => {
     return (
         <div className ='list'>List</div>
     )
 }
 
-export default List1;
+export default List;
