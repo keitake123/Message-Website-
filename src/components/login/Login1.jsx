@@ -1,4 +1,5 @@
 import "./login.css";
+import { useState } from "react";
 
 const Login = () => {
     const [avatar, setAvatar] = useState({
@@ -6,7 +7,13 @@ const Login = () => {
       url: "",
     });
 
-    const handleAvatar = e = 
+    const handleAvatar = e => {
+        if(e.tat)
+        setAvatar({
+            file:e.target.files[0],
+            url: URL.createObjectURL(e.target.files[0])
+        })
+    }
 
        return <div className="login">
           <div className="item">
@@ -21,11 +28,13 @@ const Login = () => {
             <div className="Item">
             <h2>Create an Account</h2>
             <form>
-            <label htmlFor ="file">Upload an image</label>
+            <label htmlFor ="file">
+                <img src={avatar.url || "./avatar.png"} alt="" /> 
+                    Upload an image</label>
             <input type="file" id="file" style={{display:"none"}} onchange={handleAvatar}/>
             <input type="text" placeholder="Username" name="username" />
             <input type="password" placeholder="Password" name="password" />
-            <button>Sign In </button>
+            <button>Sign Up </button>
             </form>
             </div>
             </div>;
