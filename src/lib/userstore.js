@@ -1,30 +1,25 @@
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { create } from "zustand";
+import { db } from "./firebase";
 
-const upload = async (file) => {
-  const date = new Date();
-  const storageRef = ref(storage, `images/${date + file.name}`);
+export const useUserStore = create((set) => ({
+  currentUser: null,
+  isLoading: true,
+  fetchUserInfo: async (uid) => {
+    if (!uid) return set({ currentUser: null, isLoading: false });
 
-  const uploadTask = uploadBytesResumable(storageRef, file);
+    try {
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
 
-  return new Promise((resolve, reject) => {
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-      },
-      (error) => {
-        reject("Something went wrong!" + error.code);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          resolve(downloadURL);
-        });
+      if (docSnap.exists()) {
+        set({ currentUser: docSnap.data(), isLoading: false });
+      } else {
+        set({ currentUser: null, isLoading: false });
       }
-    );
-  });
-};
-
-export default upload;
+    } catch (err) {
+      console.log(err);
+      return set({ currentUser: null, isLoading: false });
+    }
+  },
+}));
