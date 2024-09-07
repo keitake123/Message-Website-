@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState, useRef, useEffect } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
 
@@ -11,7 +11,11 @@ const Chat = () => {
         setText((prev) => prev + e.emoji);
         setOpen(false);
       };
-   
+      const endRef = useRef(null);
+
+      useEffect(() => {
+        endRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, []);
 
     return (
         <div className='chat'>
@@ -32,7 +36,7 @@ const Chat = () => {
             <div className='center'>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='texts'>
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -40,7 +44,7 @@ const Chat = () => {
             </div>
             </div>
             <div className='message own'>
-            <div className='texts'>
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -49,7 +53,7 @@ const Chat = () => {
             </div>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='texts'>
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -57,7 +61,7 @@ const Chat = () => {
             </div>
             </div>
             <div className='message own'>
-            <div className='texts'>
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -66,7 +70,7 @@ const Chat = () => {
             </div>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='texts'>
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -74,7 +78,7 @@ const Chat = () => {
             </div>
             </div>
             <div className='message own'>
-            <div className='texts'>
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -83,23 +87,24 @@ const Chat = () => {
             </div>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='texts'>
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
             <span>1 min ago</span>
             </div>
             </div>
-            <div className='message own'>
-            <div className='texts'>
+            <div className='message'>
+            <img src="./avatar.png" alt="" />
+            <div className='text'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
             <span>1 min ago</span>
             </div>
             </div>
+            <div ref={endRef}></div>
             </div>
-
             <div className='bottom'>
                 <div className='icons'>
                     <img src="./img.png" alt="Image" />

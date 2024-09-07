@@ -17,7 +17,7 @@ const Detail = () => {
         </div>
         <div className ='option'>
         <div className ='title'>
-        <span>Privacy % Help</span>
+        <span>Privacy & Help</span>
         <img src="./arrowUp.png" alt="" />
         </div>
         </div>
@@ -32,48 +32,50 @@ const Detail = () => {
         <img src="https://images.pexels.com/photos/7381200/pexels-photo-7381200.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"  alt=""/>
         <span>photo_2024_2.png</span>
         </div>
-        <img src="download.png"  alt=""/>
+        <img src="download.png"  alt="" className="icon" />
         </div>
         <div className ='photoItem'>
         <div className ='photoDetail'>  
         <img src="https://images.pexels.com/photos/7381200/pexels-photo-7381200.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"  alt=""/>
         <span>photo_2024_2.png</span>
         </div>
-        <img src="download.png"  alt=""/>
+        <img src="download.png"  alt="" className="icon"/>
         </div>
         <div className ='photoItem'>
         <div className ='photoDetail'>  
         <img src="https://images.pexels.com/photos/7381200/pexels-photo-7381200.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"  alt=""/>
         <span>photo_2024_2.png</span>
         </div>
-        <img src="download.png"  alt=""/>
+        <img src="download.png"  alt="" className="icon"/>
         </div>
         <div className ='photoItem'>
         <div className ='photoDetail'>  
         <img src="https://images.pexels.com/photos/7381200/pexels-photo-7381200.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"  alt=""/>
         <span>photo_2024_2.png</span>
         </div>
-        <img src="download.png"  alt=""/>
+        <img src="download.png"  alt="" className="icon"/>
         </div>
         <div className ='photoItem'>
         <div className ='photoDetail'>  
         <img src="https://images.pexels.com/photos/7381200/pexels-photo-7381200.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"  alt=""/>
         <span>photo_2024_2.png</span>
         </div>
-        <img src="download.png"  alt=""/>
+        <img src="download.png"  alt="" className="icon"/>
+        </div>
         </div>
         </div>
         <div className ='option'>
         <div className ='title'>
         <span>Shared Files</span>
-        <img src="./arrowUp.png" alt="" />
+        <img src="./arrowUp.png" alt="" className="icon"/>
+        </div>
         </div>
         <button>Block User</button>
-        </div>
-        </div>
+        <button className="logout">Logout</button>
         </div>
         </div>
     )
 }
 
 export default Detail
+
