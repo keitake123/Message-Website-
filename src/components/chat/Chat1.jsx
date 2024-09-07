@@ -36,7 +36,7 @@ const Chat = () => {
             <div className='center'>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -44,7 +44,7 @@ const Chat = () => {
             </div>
             </div>
             <div className='message own'>
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -53,7 +53,7 @@ const Chat = () => {
             </div>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -61,7 +61,7 @@ const Chat = () => {
             </div>
             </div>
             <div className='message own'>
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -70,7 +70,7 @@ const Chat = () => {
             </div>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -78,7 +78,7 @@ const Chat = () => {
             </div>
             </div>
             <div className='message own'>
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -87,7 +87,7 @@ const Chat = () => {
             </div>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -96,7 +96,7 @@ const Chat = () => {
             </div>
             <div className='message'>
             <img src="./avatar.png" alt="" />
-            <div className='text'>
+            <div className='texts'>
             <p>
             afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa nin afefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa ninafefav feffanend  fniqninw fnqwnfa nin
             </p>
@@ -112,7 +112,7 @@ const Chat = () => {
                     <img src="./mic.png" alt="Mic" />
                 </div>    
                 <input 
-                type="text" 
+                type="texts" 
                 placeholder="Type a message..." 
                 value={text}
                 onChange={(e) => setText(e.target.value)}
