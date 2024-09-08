@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./chatList.css";
+import "./chatlist.css";
 import AddUser from "./adduser/Adduser1";
 import { useUserStore } from "../../../lib/userstore";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
