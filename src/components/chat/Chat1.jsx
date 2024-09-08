@@ -7,7 +7,7 @@ import {
   getDoc,
   onSnapshot,
   updateDoc,
-  Timestamp, // Import Timestamp
+  Timestamp // Import Timestamp
 } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import { useChatStore } from "../../lib/chatstore";
@@ -30,7 +30,7 @@ const Chat = () => {
 
     useEffect(() => {
         endRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, []);
+    }, [chat]);
 
     useEffect(() => {
         const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
@@ -49,25 +49,24 @@ const Chat = () => {
                 messages: arrayUnion({
                     sendId: currentUser.id,
                     text,
-                    createdAt: Timestamp.now(), // Use Timestamp here
+                    createdAt: Timestamp.now() // Use Timestamp here
                 })
             });
 
+            // Update userChats for both users
             const userIDs = [currentUser.id, user.id];
             userIDs.forEach(async (id) => {
-                const userChatsRef = doc(db, "userchats", id);
+                const userChatsRef = doc(db, "userChats", id);
                 const userChatsSnapshot = await getDoc(userChatsRef);
 
                 if (userChatsSnapshot.exists()) {
                     const userChatsData = userChatsSnapshot.data();
-
                     const chatIndex = userChatsData.chats.findIndex(
                         (c) => c.chatId === chatId
                     );
 
                     if (chatIndex !== -1) {
                         userChatsData.chats[chatIndex].lastMessage = text;
-                        userChatsData.chats[chatIndex].isSeen = id === currentUser.id;
                         userChatsData.chats[chatIndex].updatedAt = Timestamp.now(); // Use Timestamp here
 
                         await updateDoc(userChatsRef, {
@@ -85,10 +84,10 @@ const Chat = () => {
         <div className='chat'>
             <div className='top'>
                 <div className='user'>
-                    <img src="./avatar.png" alt="Avatar" />
+                    <img src={user?.avatar || "./avatar.png"} alt="Avatar" />
                     <div className="texts">
-                        <span>Josh J</span>
-                        <p>Hi, my name is Josh</p>
+                        <span>{user?.username || "User"}</span>
+                        <p>Hi, my name is Bob</p>
                     </div>
                 </div>
                 <div className='icons'>
@@ -99,11 +98,11 @@ const Chat = () => {
             </div>
             <div className='center'>
                 {chat?.messages?.map((message) => (
-                    <div className="message own" key={`${message.sendId}-${message.createdAt?.toMillis()}`}>
+                    <div className={`message ${message.sendId === currentUser.id ? 'own' : ''}`} key={`${message.sendId}-${message.createdAt.toMillis()}`}>
                         <div className="texts">
                             {message.img && <img src={message.img} alt="" />}
                             <p>{message.text}</p>
-                            <span>{/* <span>{message}</span> */}</span>
+                            {/* Removed "not seen" text */}
                         </div>
                     </div>
                 ))}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./chatList.css";
-import Adduser from "./adduser/Adduser1";
+import AddUser from "./adduser/Adduser1";
 import { useUserStore } from "../../../lib/userstore";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import { useChatStore } from "../../../lib/chatstore";
 
@@ -11,6 +11,7 @@ const Chatlist = () => {
     const [chats, setChats] = useState([]);
     const { currentUser } = useUserStore();
     const { chatId, changeChat } = useChatStore();
+    const [input, setInput] = useState(""); // Initialize as an empty string
 
     console.log(chatId);
 
@@ -58,12 +59,16 @@ const Chatlist = () => {
         changeChat(chat.chatId, chat.user);
     };
 
+    const filteredChats = chats.filter((c) =>
+        c.user.username.toLowerCase().includes(input.toLowerCase())
+    );
+
     return (
         <div className='chatlist'>
             <div className='search'>
                 <div className='searchbar'>
                     <img src="./search.png" alt="Search icon" />
-                    <input type="text" placeholder="Search" />
+                    <input type="text" placeholder="Search" onChange={(e) => setInput(e.target.value)} />
                 </div>
                 <img
                     src={addMode ? "./minus.png" : "./plus.png"}
@@ -72,8 +77,8 @@ const Chatlist = () => {
                     onClick={() => setAddMode((prev) => !prev)}
                 />
             </div>
-            {chats.length > 0 ? (
-                chats.map((chat) => (
+            {filteredChats.length > 0 ? (
+                filteredChats.map((chat) => (
                     <div className="item" key={chat.chatId} onClick={() => handleSelect(chat)}>
                         <img src={chat.user.avatar || "./avatar.png"} alt="User avatar" />
                         <div className="texts">
@@ -85,7 +90,7 @@ const Chatlist = () => {
             ) : (
                 <p>No chats available</p>
             )}
-            {addMode && <Adduser />}
+            {addMode && <AddUser />}
         </div>
     );
 };
