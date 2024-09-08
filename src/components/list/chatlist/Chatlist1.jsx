@@ -4,11 +4,15 @@ import Adduser from "./adduser/Adduser1";
 import { useUserStore } from "../../../lib/userstore";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
+import { useChatStore } from "../../../lib/chatstore";
 
 const Chatlist = () => {
     const [addMode, setAddMode] = useState(false);
     const [chats, setChats] = useState([]);
     const { currentUser } = useUserStore();
+    const { chatId, changeChat } = useChatStore();
+
+    console.log(chatId);
 
     useEffect(() => {
         const unSub = onSnapshot(doc(db, "userChats", currentUser.id), async (res) => {
@@ -38,8 +42,8 @@ const Chatlist = () => {
             // Filter out null values and sort based on updatedAt
             setChats(
                 chatData.filter(Boolean).sort((a, b) => {
-                    const aDate = a.updatedAt?.toDate() || 0;
-                    const bDate = b.updatedAt?.toDate() || 0;
+                    const aDate = a.updatedAt && typeof a.updatedAt.toDate === 'function' ? a.updatedAt.toDate() : 0;
+                    const bDate = b.updatedAt && typeof b.updatedAt.toDate === 'function' ? b.updatedAt.toDate() : 0;
                     return bDate - aDate;
                 })
             );
@@ -49,6 +53,10 @@ const Chatlist = () => {
             unSub();
         };
     }, [currentUser.id]);
+
+    const handleSelect = async (chat) => {
+        changeChat(chat.chatId, chat.user);
+    };
 
     return (
         <div className='chatlist'>
@@ -66,7 +74,7 @@ const Chatlist = () => {
             </div>
             {chats.length > 0 ? (
                 chats.map((chat) => (
-                    <div className="item" key={chat.chatId}>
+                    <div className="item" key={chat.chatId} onClick={() => handleSelect(chat)}>
                         <img src={chat.user.avatar || "./avatar.png"} alt="User avatar" />
                         <div className="texts">
                             <span>{chat.user.username}</span>
@@ -80,6 +88,6 @@ const Chatlist = () => {
             {addMode && <Adduser />}
         </div>
     );
-}
+};
 
 export default Chatlist;
